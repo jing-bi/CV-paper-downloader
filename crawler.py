@@ -35,7 +35,7 @@ class CvSpider:
                 for word in keywords:
                     if word in title: title = f"[{word}]" + title
                 if title[0] == '[':
-                    savefunc(url,  + "[{name}{year}]"+title)
+                    savefunc(url,  f"[{name}{year}]"+title)
                     return 1
                 return 0
             except:
@@ -48,8 +48,7 @@ class CvSpider:
             t.set_description(f'{name}{year}|Found:{num}')
     def save(self,format):
         conference = [['CVPR', i,format] for i in [x for x in range(2014, 2020)]] + \
-                     [['ICCV', i,format] for i in [x for x in range(2013, 2019, 2)]] + \
-		     ["ECCV2018"]
+                     [['ICCV', i,format] for i in [x for x in range(2013, 2019, 2)]] + [["ECCV",2018,format]]
         with mp.Pool(len(conference)) as pool:
             pool.imap(self.saveonce, conference)
             pool.close()
