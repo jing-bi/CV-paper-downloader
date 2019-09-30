@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 import multiprocess as mp
+import argparse
 class CvSpider:
     def __init__(self,save_folder,keywords):
         self.save_folder=save_folder
@@ -55,6 +56,9 @@ class CvSpider:
             pool.join()
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("format",type=str)
+    args = parser.parse_args()
     keywords=['egoc','gaze','first']
     save_folder=Path(__file__).parent
 
@@ -67,7 +71,7 @@ if __name__ == "__main__":
 
     print(f"Keywords: {keywords}")
     downloader=CvSpider(save_folder,keywords)
-    downloader.save('pdf')
+    downloader.save(args.format)
 
 
 
