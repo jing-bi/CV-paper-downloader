@@ -57,7 +57,7 @@ class CvSpider:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("format",type=str)
+    parser.add_argument("format", nargs='?',default='md',type=str)
     args = parser.parse_args()
     keywords=['egoc','gaze','first']
     save_folder=Path(__file__).parent
